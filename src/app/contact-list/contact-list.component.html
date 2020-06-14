@@ -1,0 +1,49 @@
+<div class="container">
+  <h2 class="table-header">Contact List</h2>
+  <button class="app-button add-button" routerLink="/add">
+    + Add new contact
+  </button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contactList">
+        <td>{{ contact.firstName }}</td>
+        <td>{{ contact.lastName }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phone }}</td>
+        <td>
+          <span>
+            {{ contact.status === "active" ? "Active" : "Inactive" }}
+          </span>
+        </td>
+        <td class="buttons">
+          <button class="btn btn-primary" (click)="edit(contact.id)">
+            Edit
+          </button>
+          
+          <button class="btn btn-info" (click)="changeStatus(contact.id)">
+            Change Status
+          </button>
+          
+          <button class="btn btn-danger" (click)="deleteContact(contact.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-container *ngIf="!contactList.length">
+    <p>
+      No contact data avalable
+    </p>
+  </ng-container>
+</div>

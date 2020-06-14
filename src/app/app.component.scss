@@ -1,0 +1,15 @@
+.container {
+  margin: 0 auto;
+  width: 75%;
+  text-align: center;
+  margin-top: 20px;
+  .form {
+    border: 1px solid yellowgreen;
+    padding: 15px;
+    .field {
+      display: flex;
+      justify-content: space-evenly;
+      margin: 15px;
+    }
+  }
+}

@@ -1,0 +1,153 @@
+<h2>{{ isUpdateMode ? "Update contact from" : "Add new contact form" }}</h2>
+<hr />
+<div class="container">
+  <form class="form" [formGroup]="contactForm" (ngSubmit)="addUpdateContact()">
+    <div class="form-group">
+      <label class="control-label col" for="firstName">First Name:</label>
+      <div class="col-sm-8">
+        <input
+          type="firstName"
+          class="form-control"
+          id="firstName"
+          placeholder="Enter First Name"
+          name="firstName"
+          formControlName="firstName"
+          [ngClass]="{
+            'alert alert-danger':
+              control.firstName?.invalid && control.firstName?.dirty
+          }"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            control.firstName?.errors &&
+            (control.firstName?.dirty || control.firstName?.touched)
+          "
+        >
+          <div *ngIf="control.firstName?.errors?.required">
+            First name is required
+          </div>
+          <div *ngIf="control.firstName?.errors?.pattern">
+            Enter valid first name
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col" for="lastName">Last Name:</label>
+      <div class="col-sm-8">
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="Enter Last Name"
+          name="lastName"
+          formControlName="lastName"
+          [ngClass]="{
+            'alert alert-danger':
+              control.lastName?.invalid && control.lastName?.dirty
+          }"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            control.lastName?.errors &&
+            (control.lastName?.dirty || control.lastName?.touched)
+          "
+        >
+          <div *ngIf="control.lastName?.errors?.required">
+            Last name is required
+          </div>
+          <div *ngIf="control.lastName?.errors?.pattern">
+            Enter valid Last name
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col" for="Email">Email:</label>
+      <div class="col-sm-8">
+        <input
+          type="email"
+          class="form-control"
+          id="Email"
+          placeholder="Enter email address"
+          name="Email"
+          formControlName="email"
+          [ngClass]="{
+            'alert alert-danger': control.email?.invalid && control.email?.dirty
+          }"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            control.email?.errors &&
+            (control.email?.dirty || control.email?.touched)
+          "
+        >
+          <div *ngIf="control.email?.errors?.required">
+            email is required
+          </div>
+          <div *ngIf="control.email?.errors?.pattern">
+            Enter valid email address
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col" for="phone">Phone Number:</label>
+      <div class="col-sm-8">
+        <input
+          type="phone"
+          class="form-control"
+          id="phone"
+          placeholder="Enter phone number"
+          name="phone"
+          formControlName="phone"
+          [ngClass]="{
+            'alert alert-danger': control.phone?.invalid && control.phone?.dirty
+          }"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            control.phone?.errors &&
+            (control.phone?.dirty || control.phone?.touched)
+          "
+        >
+          <div *ngIf="control.phone?.errors?.required">
+            Phone is required
+          </div>
+          <div *ngIf="control.phone?.errors?.pattern">
+            Enter valid phone number
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col" for="sel1">Select Status:</label>
+      <div class="col-sm-8">
+        <select formControlName="status" class="form-control" id="sel1">
+          <option value="active">Active</option>
+          <option value="inactive">In-active</option>
+        </select>
+      </div>
+    </div>
+    <hr />
+    <div class="form-footer">
+      <button class="btn default-button" routerLink="">Back <<</button>
+      <button class="btn btn-primary" [disabled]="!contactForm.valid">
+        {{ isUpdateMode ? "update" : " Submit" }}
+      </button>
+      <button
+        type="button"
+        *ngIf="!isUpdateMode"
+        class="btn default-button"
+        (click)="resetForm()"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
